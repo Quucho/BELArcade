@@ -1,0 +1,5 @@
+menu "BELArcade"
+	source "$BR2_EXTERNAL_BELARCADE_PATH/package/mednafen/Config.in"
+	source "$BR2_EXTERNAL_BELARCADE_PATH/package/gamepad-bridge/Config.in"
+	source "$BR2_EXTERNAL_BELARCADE_PATH/package/belarcade-frontend/Config.in"
+endmenu

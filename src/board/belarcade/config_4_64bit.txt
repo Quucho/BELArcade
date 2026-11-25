@@ -1,0 +1,20 @@
+# BELArcade - config.txt de la Raspberry Pi 4 (64 bits)
+start_file=start4.elf
+fixup_file=fixup4.dat
+kernel=Image
+
+# HDMI: salida activa aunque el monitor se detecte tarde; la resolucion
+# se toma del monitor (EDID)
+hdmi_force_hotplug=1
+hdmi_drive=2
+disable_overscan=1
+gpu_mem=128
+
+# Audio (conector de 3.5 mm y HDMI)
+dtparam=audio=on
+
+# Graficos KMS (requerido por SDL2 con kmsdrm)
+dtoverlay=vc4-fkms-v3d
+max_framebuffers=2
+dtoverlay=miniuart-bt
+arm_64bit=1

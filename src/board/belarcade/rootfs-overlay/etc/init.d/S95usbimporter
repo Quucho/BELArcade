@@ -1,0 +1,34 @@
+#!/bin/sh
+# BELArcade - arranca el daemon de importacion de ROMs desde USB
+
+DAEMON=/opt/belarcade/daemon/usb_importer.py
+PIDFILE=/var/run/usb_importer.pid
+LOGFILE=/var/log/usb_importer.log
+
+iniciar() {
+    printf "BELArcade: iniciando daemon USB... "
+    if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+        echo "ya en ejecucion"
+        return 0
+    fi
+    python3 "$DAEMON" >> "$LOGFILE" 2>&1 &
+    echo $! > "$PIDFILE"
+    echo "OK"
+}
+
+detener() {
+    printf "BELArcade: deteniendo daemon USB... "
+    if [ -f "$PIDFILE" ]; then
+        kill "$(cat "$PIDFILE")" 2>/dev/null
+        rm -f "$PIDFILE"
+    fi
+    echo "OK"
+}
+
+case "$1" in
+    start) iniciar ;;
+    stop) detener ;;
+    restart) detener; sleep 1; iniciar ;;
+    *) echo "Uso: $0 {start|stop|restart}"; exit 1 ;;
+esac
+exit 0

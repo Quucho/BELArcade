@@ -1,0 +1,11 @@
+Herramientas para generar los recursos de la intro de BELArcade.
+
+generar_intro.py   -> genera splash.png (intro) y splash_copiando.png (copia desde USB)
+                      Uso: python3 generar_intro.py <carpeta_salida>
+                      Requiere: pip install pillow
+generar_sonidos.py -> genera splash.wav (jingle de arranque)
+                      Uso: python3 generar_sonidos.py <carpeta_salida>
+                      Requiere: pip install numpy
+
+Las fuentes (Press Start 2P y VT323, licencia SIL OFL) estan en
+board/belarcade/rootfs-overlay/usr/share/belarcade/fonts/

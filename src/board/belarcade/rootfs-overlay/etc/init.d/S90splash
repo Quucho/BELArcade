@@ -1,0 +1,27 @@
+#!/bin/sh
+# BELArcade - intro de arranque: imagen a pantalla completa y jingle
+
+CONF=/etc/belarcade/belarcade.conf
+[ -r "$CONF" ] && . "$CONF"
+SPLASH_IMAGE="${SPLASH_IMAGE:-/etc/belarcade/assets/splash.png}"
+SPLASH_AUDIO="${SPLASH_AUDIO:-/etc/belarcade/assets/splash.wav}"
+SPLASH_MAX_SECONDS="${SPLASH_MAX_SECONDS:-4}"
+ALSA_DEVICE="${ALSA_DEVICE:-default}"
+
+case "$1" in
+    start)
+        if [ -r "$SPLASH_AUDIO" ] && command -v aplay >/dev/null 2>&1; then
+            aplay -D "$ALSA_DEVICE" "$SPLASH_AUDIO" >/dev/null 2>&1 &
+        fi
+        if [ -r "$SPLASH_IMAGE" ] && command -v fbv >/dev/null 2>&1; then
+            fbv -fie "$SPLASH_IMAGE" >/dev/null 2>&1 &    # -f -e: ajusta la imagen a la pantalla
+            FBV_PID=$!
+        fi
+        sleep "$SPLASH_MAX_SECONDS"
+        [ -n "$FBV_PID" ] && kill "$FBV_PID" >/dev/null 2>&1
+        cat /dev/zero > /dev/fb0 2>/dev/null              # pantalla en negro al terminar
+        ;;
+    stop) ;;
+    *) echo "Uso: $0 {start|stop}"; exit 1 ;;
+esac
+exit 0

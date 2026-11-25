@@ -1,0 +1,17 @@
+#!/bin/sh
+# BELArcade - carga los modulos del kernel listados en /etc/modules
+
+case "$1" in
+    start)
+        [ -r /etc/modules ] || exit 0
+        while read -r modulo args; do
+            case "$modulo" in
+                ""|"#"*) continue ;;
+            esac
+            modprobe "$modulo" $args >/dev/null 2>&1
+        done < /etc/modules
+        ;;
+    stop) ;;
+    *) echo "Uso: $0 {start|stop}"; exit 1 ;;
+esac
+exit 0

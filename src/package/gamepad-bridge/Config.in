@@ -1,0 +1,5 @@
+config BR2_PACKAGE_GAMEPAD_BRIDGE
+	bool "gamepad-bridge"
+	help
+	  Traduce los botones del control (/dev/input/js0) a teclas de un
+	  teclado virtual (uinput) para el frontend y Mednafen.
