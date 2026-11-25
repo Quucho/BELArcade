@@ -4,8 +4,8 @@ Consola de videojuegos retro para Raspberry Pi 4, basada en Buildroot 2025.02, M
 
 ## Autores
 - García Vázquez Jesús Alejandro.
-- Elena.
-- Brandon.
+- María Elena Rufino López.
+- Andrade Pinto Brandon Mihali.
 
 Asignatura: Fundamentos de Sistemas Embebidos, grupo 1.
 Fecha: 24 de noviembre de 2026.
