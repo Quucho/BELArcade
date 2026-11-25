@@ -20,9 +20,6 @@ Desarrollo: del 17 al 23 de noviembre de 2026.
 ## Video
 https://youtu.be/d4zTpowfDdM
 
-## Repositorio público
-Pendiente de incorporar la URL pública.
-
 ## Construcción
 Consultar el procedimiento detallado en el reporte. Colocar `src` junto a `buildroot-2025.02` y ejecutar desde la carpeta de Buildroot:
 
